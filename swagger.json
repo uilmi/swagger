@@ -1,0 +1,114 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "this is API",
+    "version": "1.0",
+    "title": "Nama API Kamu",
+    "termsOfService": "http://websitekamu/linkKetermsOfService",
+    "contact": {
+      "email": "kamu@mail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "host.website-kamu.com",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Article",
+      "description": "Article Resources"
+    }
+  ],
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key"
+    }
+  },
+  "paths": {
+    "/articles": {
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "List all available articles",
+        "description": "describe hit",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Lorem Ipsum"
+                  },
+                  "body": {
+                    "type": "string",
+                    "example": "Dolor sit amet"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Add new article",
+        "description": "Create new",
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Article object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Lorem Ipsum"
+                },
+                "body": {
+                  "type": "string",
+                  "example": "Dolor sit amet"
+                }
+              }
+            }
+          }
+        ],
+        "consumes": [
+          "appliaction/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully create new article"
+          }
+        }
+      }
+    }
+  }
+}
